@@ -1,4 +1,4 @@
-package com.example.demo.medol;
+package com.example.demo.User.medol;
 
 public class User {
     private String userId;

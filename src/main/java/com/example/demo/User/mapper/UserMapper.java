@@ -1,6 +1,6 @@
-package com.example.demo.mapper;
+package com.example.demo.User.mapper;
 
-import com.example.demo.medol.User;
+import com.example.demo.User.medol.User;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userId);

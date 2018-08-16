@@ -1,8 +1,8 @@
-package com.example.demo.service.impl;
+package com.example.demo.User.service.impl;
 
-import com.example.demo.mapper.UserMapper;
-import com.example.demo.medol.User;
-import com.example.demo.service.UserService;
+import com.example.demo.User.service.UserService;
+import com.example.demo.User.mapper.UserMapper;
+import com.example.demo.User.medol.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
