@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.UUID;
+
 
 @Controller
 @RequestMapping(value = "/user")
@@ -18,7 +20,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/add", produces = {"application/json;charset=UTF-8"})
     public int addUser(User user){
-        user.setUserId(1);
+        user.setUserId(UUID.randomUUID().toString().replace("-",""));
         user.setUserName("张三");
         user.setPassword("123");
         user.setPhone("1234567");
