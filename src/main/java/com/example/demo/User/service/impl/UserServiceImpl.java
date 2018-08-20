@@ -6,6 +6,9 @@ import com.example.demo.User.medol.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 @Service(value = "userService")
 public class UserServiceImpl implements UserService {
 
@@ -16,4 +19,11 @@ public class UserServiceImpl implements UserService {
     public int addUser(User user) {
         return userMapper.insert(user);
     }
+
+    @Override
+    public List<User> findUser(Map<String,Object> map) {
+        return userMapper.findUserList(map);
+    }
+
+
 }
