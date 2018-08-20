@@ -9,6 +9,7 @@ import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.ParameterMapping;
+import org.apache.ibatis.mapping.SqlCommandType;
 import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
@@ -64,6 +65,12 @@ public class PageInterceptor implements Interceptor {
                 .getTarget();
         // 通过反射获取到当前RoutingStatementHandler对象的delegate属性
         StatementHandler delegate = (StatementHandler) ReflectUtil.getFieldValue(handler, "delegate");
+        // 通过反射获取delegate父类BaseStatementHandler的mappedStatement属性
+        MappedStatement mappedStatement = (MappedStatement) ReflectUtil
+                .getFieldValue(delegate, "mappedStatement");
+        if(SqlCommandType.SELECT != mappedStatement.getSqlCommandType()){
+            return invocation.proceed();
+        }
         // 获取到当前StatementHandler的
         // boundSql，这里不管是调用handler.getBoundSql()还是直接调用delegate.getBoundSql()结果是一样的，因为之前已经说过了
         // RoutingStatementHandler实现的所有StatementHandler接口方法里面都是调用的delegate对应的方法。
@@ -101,9 +108,7 @@ public class PageInterceptor implements Interceptor {
         }
 
         if (page != null) {
-            // 通过反射获取delegate父类BaseStatementHandler的mappedStatement属性
-            MappedStatement mappedStatement = (MappedStatement) ReflectUtil
-                    .getFieldValue(delegate, "mappedStatement");
+
             // 拦截到的prepare方法参数是一个Connection对象
             Connection connection = (Connection) invocation.getArgs()[0];
             // 获取当前要执行的Sql语句，也就是我们直接在Mapper映射语句中写的Sql语句
