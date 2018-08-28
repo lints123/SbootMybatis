@@ -52,7 +52,7 @@
                 <input type="text" name="username" class="form-control uname"
                        value="admin"/>
                 <input type="password" name="password"
-                       class="form-control pword m-b" value="111111"/>
+                       class="form-control pword m-b" value="123456"/>
                 <a id="login" class="btn btn-login btn-block">登录</a>
                 <!--按钮模块-->
                 <div class="outside-login">
@@ -82,11 +82,11 @@
         </div>
     </div>
     <div class="signup-footer">
-        <div class="pull-left">&copy; 2017 All Rights Reserved. BootDo
+        <div class="pull-left">&copy; 2018 All Rights Reserved. BootDo
         </div>
     </div>
 </div>
-
+<script th:inline="javascript">var ctx = [[@{/}]] ;</script>
 <!-- 全局js -->
 <script src="/jquery/jquery-3.2.1.min.js" th:src="@{/jquery/jquery-3.2.1.min.js}"></script>
 <script src="/bootstrap/3.3.7/js/bootstrap.js" th:src="@{/bootstrap/3.3.7/js/bootstrap.js}"></script>
@@ -112,20 +112,25 @@
     });
 
     function login() {
+        debugger;
+        console.log($('#signupForm').serialize());
         $.ajax({
             type: "POST",
-            url: ctx+"login",
+            url: "http://localhost:8080/index/login",
             data: $('#signupForm').serialize(),
             success: function (r) {
                 if (r.code == 0) {
                     var index = layer.load(1, {
                         shade: [0.1,'#fff'] //0.1透明度的白色背景
                     });
-                    parent.location.href = '/index';
+                    console.log("____成功");
+                    parent.location.href = '/test';
                 } else {
                     layer.msg(r.msg);
                 }
-            },
+            },error:function(r){
+                r.message;
+            }
         });
     }
 

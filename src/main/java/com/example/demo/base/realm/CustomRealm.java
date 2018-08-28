@@ -31,7 +31,7 @@ public class CustomRealm extends AuthorizingRealm {
         String password = getPasswordByUserName(userName);
         SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(userName,password,this.getName());
         // 盐值加密
-        simpleAuthenticationInfo.setCredentialsSalt(ByteSource.Util.bytes(userName));
+        //simpleAuthenticationInfo.setCredentialsSalt(ByteSource.Util.bytes(userName));
         // 返回自定义角色认证的方法，使用加密
         return simpleAuthenticationInfo;
     }
@@ -39,13 +39,13 @@ public class CustomRealm extends AuthorizingRealm {
     // 模拟数据库
     private String getPasswordByUserName(String userName){
         Map<String,String> hashMap = new HashMap<>();
-        hashMap.put(userName,"73072183748d560a158a4a2100e4a02e");
+        hashMap.put(userName,"123456");
         return hashMap.get(userName);
     }
 
     public static void main(String[] args) {
         // 加盐（相当于再加密）
-        Md2Hash md2Hash = new Md2Hash("123456","lts");
+        Md2Hash md2Hash = new Md2Hash("123456","admin");
         System.out.println(md2Hash);
     }
 }
