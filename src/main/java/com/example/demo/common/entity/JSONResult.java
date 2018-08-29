@@ -22,7 +22,7 @@ public class JSONResult implements Serializable {
     /**
      * 返回成功或者失败，0为成功，-1为失败
      */
-    private String success;
+    private boolean success;
 
     public Object getData() {
         return data;
@@ -48,18 +48,18 @@ public class JSONResult implements Serializable {
         this.msg = msg;
     }
 
-    public String getSuccess() {
+    public boolean getSuccess() {
         return success;
     }
 
-    public void setSuccess(String success) {
+    public void setSuccess(boolean success) {
         this.success = success;
     }
 
     public JSONResult() {
     }
 
-    public JSONResult(Object data, String code, String msg, String success) {
+    public JSONResult(Object data, String code, String msg, boolean success) {
         this.data = data;
         this.code = code;
         this.msg = msg;

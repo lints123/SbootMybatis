@@ -10,7 +10,7 @@ public class AjaxJSON implements Serializable {
 
     private String code;
 
-    private String success;
+    private boolean success;
 
     public Object getData() {
         return data;
@@ -36,11 +36,11 @@ public class AjaxJSON implements Serializable {
         this.code = code;
     }
 
-    public String getSuccess() {
+    public boolean getSuccess() {
         return success;
     }
 
-    public void setSuccess(String success) {
+    public void setSuccess(boolean success) {
         this.success = success;
     }
 

@@ -36,6 +36,7 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/font/**", "anon");
         filterChainDefinitionMap.put("/jquery/**", "anon");
         filterChainDefinitionMap.put("/bootstrap/**", "anon");
+        filterChainDefinitionMap.put("js/plugins/**","anon");
         filterChainDefinitionMap.put("/index/login","anon");
         // 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
         filterChainDefinitionMap.put("/logout", "logout");

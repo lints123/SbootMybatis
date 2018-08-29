@@ -22,7 +22,7 @@
 <div class="signinpanel">
     <div class="row">
         <div class="col-sm-7">
-            <div class="signin-info">
+            <div class="signin-info" style="color: rgba(255,255,255,.95);">
                 <div class="logopanel m-b">
                     <h1>Blog</h1>
                 </div>
@@ -30,7 +30,7 @@
                 <h3>
                     欢迎使用 <strong>Blog管理系统</strong>
                 </h3>
-                <ul class="m-b">
+                <ul class="m-b" >
                     <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i>
                         springBoot
                     </li>
@@ -112,21 +112,19 @@
     });
 
     function login() {
-        debugger;
-        console.log($('#signupForm').serialize());
         $.ajax({
             type: "POST",
             url: "http://localhost:8080/index/login",
             data: $('#signupForm').serialize(),
             success: function (r) {
-                if (r.code == 0) {
+                console.log(r);
+                if (r.success) {
                     var index = layer.load(1, {
                         shade: [0.1,'#fff'] //0.1透明度的白色背景
                     });
-                    console.log("____成功");
-                    parent.location.href = '/test';
+                    parent.location.href = 'index/test';
                 } else {
-                    layer.msg(r.msg);
+                    layer.alert(r.msg);
                 }
             },error:function(r){
                 r.message;

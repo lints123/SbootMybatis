@@ -29,7 +29,7 @@ public abstract class BaseController {
         json.setCode(jsonResult.getCode());
         json.setData(jsonResult);
         json.setMsg(jsonResult.getMsg());
-        json.setSuccess(ResponseCode.CODE_SUCCESS);
+        json.setSuccess(true);
         return json;
     }
 
@@ -39,7 +39,7 @@ public abstract class BaseController {
     public AjaxJSON failResult(JSONResult jsonResult) {
         AjaxJSON json = new AjaxJSON();
         json.setData(jsonResult);
-        json.setSuccess(ResponseCode.CODE_FINAL);
+        json.setSuccess(false);
         if (jsonResult == null) {
             json.setMsg("失败");
             json.setCode(ResponseCode.CODE_FINAL);

@@ -1,10 +1,16 @@
 package com.example.demo.login.controller;
 
 import com.example.demo.common.BaseController;
+import com.example.demo.common.constants.ResponseCode;
 import com.example.demo.common.entity.AjaxJSON;
 import com.example.demo.common.entity.JSONResult;
+import com.example.demo.common.util.JsonUtil;
+import com.example.demo.common.util.UserUtil;
 import com.google.common.eventbus.SubscriberExceptionHandler;
+import net.sf.json.JSONObject;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
@@ -23,19 +29,9 @@ public class LoginController extends BaseController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public AjaxJSON login(String username,String password){
-        JSONResult jsonResult = new JSONResult();
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(username,password);
-        try{
-            if(!subject.isAuthenticated()){
-                subject.login(token);
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-        return ajaxResult(jsonResult);
+    public JSONObject login(String username, String password){
+        JSONResult jsonResult = UserUtil.isLogin(username,password);
+        return JsonUtil.dealWithNull(ajaxResult(jsonResult));
     }
 
     @RequestMapping("/test")
