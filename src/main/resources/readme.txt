@@ -46,4 +46,5 @@ QQ、微信登录
    2.1、在Relam中，继承AuthorizingRealm，做身份认证和授权管理，并且授权管理存放到Shiro的StringPermission中
    2.2、在Controller中，定义注解@RequestPermission，并且权限标签，为用户是否具备访问该方法做权限控制
    2.3、在页面中，使用Shiro的标签：<shiro:hasPermission name="">  name中定义的是权限标签，做按钮控制处理
+   2.4、参考网站：http://412887952-qq-com.iteye.com/blog/2299777
 
