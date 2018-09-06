@@ -39,4 +39,8 @@ public class LoginController extends BaseController {
         return "test";
     }
 
+    @RequestMapping("/menu")
+    public String menu(){
+        return "menu";
+    }
 }
