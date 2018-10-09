@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 public class ServiceLoggerAspect {
 
     // 定义Service切点
-    ///匹配com.example.demo.User.service 包及其子包中所有类中的所有方法，返回类型任意，方法参数任意
+    // 匹配com.example.demo.User.service 包及其子包中所有类中的所有方法，返回类型任意，方法参数任意
     @Pointcut("execution(* com.example.demo.User.service..*.*(..))")
     public void serviceAspect(){
 
